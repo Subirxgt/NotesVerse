@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerplate")-%>
+<body>
+  <div class="notes-container">
+      <div class="semester-card">
+        <div class="semester-header" style="text-align: center;">
+          <h3 style="text-align: center;">DSA Notes</h3>
+        </div>
+        <hr>
+        <div class="subjects">
+          <% for (let unit of dsaNotes) { %>
+            <div class="subject-chip chip-with-icon" onclick="window.open('<%= unit.file %>', '_blank')" style="position: relative; cursor: pointer;">
+                <div class="chip-title"><%= unit.title %></div>
+                <div class="chip-contributor">
+                  contributed by: <%= unit.contributor?.username || "Unknown" %>
+                </div>
+                <% if (typeof user !== 'undefined' && user && user.email==="notesverse1199@gmail.com") { %>
+                <form action="/notes/dsaNotes/<%=unit._id%>/delete" method="POST" class="delete-form" 
+                  onsubmit="return confirm('Are you sure you want to delete this file?');">
+                  <input type="hidden" name="id" value="<%= unit._id.toString() %>">
+                  <button type="submit" class="delete-btn" onclick="event.stopPropagation();">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
+            <% } %>
+            </div>
+          <% } %>
+          
+        </div>
+
+      </div>
+  </div>
+</body>

@@ -1,0 +1,183 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top py-2">
+  <div class="container">
+
+    <a class="navbar-brand fw-bold text-primary" href="/home">
+      <img src="/image/title.png" style="height:45px; padding-left: 5px;">
+    </a>
+
+
+    <button
+      class="navbar-toggler border-0"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="bi bi-list fs-3 text-primary"></i>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/notes">Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/books">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/pyqs">PYQs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/practicals">Practicals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/home#DSA_Notes">DSA Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/home#contribute">Contribution Section</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-medium" href="/reviews">Reviews & Comments</a>
+        </li>
+
+        <% if (user) { %>
+          <li class="nav-item d-flex align-items-center ms-lg-3">
+            <i class="bi bi-person-circle text-primary fs-5 me-2"></i>
+            <span class="fw-semibold text-dark me-3"><%= user.name || 'User' %></span>
+            <a href="/user/logout" 
+              class="subject-chip chip-title btn-outline-dark p-1.5 shadow-sm" 
+              style="color: white; text-align: center;">
+              Logout
+            </a>
+          </li>
+        <% } else { %>
+          <li class="nav-item d-flex align-items-center ms-lg-3">
+            <i class="bi bi-person-circle text-secondary fs-5 me-2"></i>
+            <span class="fw-semibold text-dark me-3">Guest</span>
+            <a href="/user/auth" 
+              class="subject-chip chip-title btn-outline-dark p-1.5 shadow-sm" 
+              style="color: white; text-align: center;">
+              Login
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+
+  .navbar {
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .navbar-brand {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #0d6efd !important;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .navbar-toggler {
+    border: none;
+    outline: none !important;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(34%) sepia(95%) saturate(2603%) hue-rotate(203deg) brightness(95%) contrast(97%);
+  }
+
+  /* --- Nav Links --- */
+  .nav-link {
+    font-weight: 500;
+    color: #333 !important;
+    padding: 0.6rem 1.2rem;
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+
+  .nav-link:hover {
+    color: #0d6efd !important;
+    transform: translateY(-1px);
+  }
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      background: #ffffff;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .navbar-nav .nav-item {
+      margin: 0.6rem 0;
+    }
+
+    .navbar-nav .btn {
+      width: 80%;
+      margin: 0.5rem auto;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      background: #0d6efd;
+      color: #fff;
+      border-radius: 25px;
+      transition: background 0.3s ease;
+    }
+
+    .navbar-nav .btn:hover {
+      background: #0b5ed7;
+    }
+  }
+
+  .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    margin: auto;
+    background: #0d6efd;
+    border-radius: 3px;
+    transition: width 0.3s;
+  }
+
+  .nav-link:hover::after {
+    width: 70%;
+  }
+</style>
+
+<script>
+  document.addEventListener("click", function (event) {
+    const navbar = document.querySelector("#navbarContent");
+    const toggler = document.querySelector(".navbar-toggler");
+    const isClickInside = navbar.contains(event.target) || toggler.contains(event.target);
+    if (!isClickInside && navbar.classList.contains("show")) {
+      new bootstrap.Collapse(navbar).hide();
+    }
+  });
+</script>
+

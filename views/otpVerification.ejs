@@ -1,0 +1,77 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 70vh; padding: 3.2rem 0;">
+  <div class="otp-container text-center shadow-lg p-5 rounded-4" 
+       style="max-width: 420px; width: 100%; background: linear-gradient(135deg, #1e90ff, #00bfff); color: white; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
+
+    <h2 class="fw-bold mb-3">OTP Verification</h2>
+    <p class="text-light mb-4" style="opacity: 0.9;">Enter the 5-digit OTP sent to your registered email</p>
+
+    <form id="otpForm" method="POST" action="/user/otpVerification/<%= email %>">
+      <input type="hidden" name="email" value="<%= email %>" />
+      <!-- <input type="hidden" name="otp" id="otpValue" /> -->
+      <div class="otp-input-container d-flex justify-content-between mb-4" onpaste="handlePaste(event)">
+        <% for (let i = 0; i < 5; i++) { %>
+          <input
+            id="otp-input-<%= i %>"
+            name="otp[]"
+            type="text"
+            maxlength="1"
+            class="otp-input form-control text-center fw-bold"
+            style="width: 55px; height: 55px; font-size: 24px; border-radius: 12px; border: none; background: rgba(255,255,255,0.15); color: white;"
+            oninput="handleChange(event, <%= i %>)"
+            onkeydown="handleKeyDown(event, <%= i %>)"
+            required
+          />
+        <% } %>
+      </div>
+
+      <button type="submit" 
+              class="btn w-100 py-2 fw-semibold"
+              style="background: white; color: #007bff; border-radius: 25px; font-size: 1.1rem;">
+        Verify OTP
+      </button>
+    </form>
+
+    <p class="mt-4 text-white-50" style="font-size: 0.9rem;">Didn’t receive the code? 
+      <a href="/user/resendOtp/<%= email %>" class="text-white fw-semibold" style="text-decoration: underline;">Resend OTP</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  const otp = ["", "", "", "", ""];
+
+  function handleChange(e, index) {
+    const value = e.target.value;
+    if (!/^[0-9]*$/.test(value)) {
+      e.target.value = "";
+      return;
+    }
+    otp[index] = value;
+    if (value && index < otp.length - 1) {
+      document.getElementById(`otp-input-${index + 1}`).focus();
+    }
+  }
+
+  function handleKeyDown(e, index) {
+    if (e.key === "Backspace" && otp[index] === "" && index > 0) {
+      document.getElementById(`otp-input-${index - 1}`).focus();
+    }
+  }
+
+  function handlePaste(e) {
+    const pasteData = e.clipboardData.getData("text").trim();
+    if (!/^[0-9]+$/.test(pasteData)) return;
+
+    const pasteArray = pasteData.split("").slice(0, otp.length);
+    pasteArray.forEach((digit, i) => {
+      otp[i] = digit;
+      const input = document.getElementById(`otp-input-${i}`);
+      if (input) input.value = digit;
+    });
+
+    const nextIndex = pasteArray.length < otp.length ? pasteArray.length : otp.length - 1;
+    document.getElementById(`otp-input-${nextIndex}`).focus();
+  }
+</script>

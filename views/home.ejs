@@ -1,0 +1,417 @@
+<% layout("/layouts/boilerplate") -%>
+<body>
+  <div class="jumbotron text-center bg-light p-5 rounded mt-3 shadow-sm">
+    <h1 class="display-4 fw-bold">Welcome to StudyAdda</h1>
+    <p class="lead mt-3">
+      Hello! I'm <strong>Subir Mondal</strong>, a senior
+      <strong>B.Tech</strong> student from CSE A batch 2023–2027 at
+      <strong>GJUS&T, Hisar</strong>. This platform is dedicated to providing
+      organized, high-quality study materials exclusively for
+      <strong>B.Tech</strong> students of <strong>GJUS&T, Hisar</strong>, supporting
+      them at every stage of their academic journey.
+    </p>
+    <p class="text-muted" style="font-size: medium">
+      All <strong>B.Tech</strong> first-year resources are available for
+      <strong>all branches</strong>, while materials from the second year
+      onwards are tailored specifically for <strong>CSE students</strong>.
+      Currently, resources are uploaded up to the second year.
+    </p>
+
+    <div id="userWelcome">
+      <% if (typeof user !== 'undefined' && user) { %>
+      <p class="mt-3 text-success fw-bold">👋 Welcome, <%= user.name %>!</p>
+      <% } else { %>
+      <p class="mt-3 text-muted">
+        You're browsing as a guest.
+        <a href="/user/auth" class="text-decoration-none fw-bold">Login</a> to
+        contribute.
+      </p>
+      <% } %>
+    </div>
+
+    <a
+      href="#contribute"
+      class="subject-chip chip-title w-100 p-3 shadow-sm mt-3"
+      id="contributeBtn"
+      style="color: white; align-items: center"
+    >
+      <i class="bi bi-upload"> Contribute Your Notes</i>
+    </a>
+  </div>
+
+  <div class="container mt-5">
+    <h3 class="text-center mb-4">Why StudyAdda Stands Out</h3>
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="card h-100 p-3 shadow-sm hover-shadow border-0">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Organized & Accessible</h5>
+            <p class="card-text text-muted">
+              Every resource — notes, books, practicals, and PYQs — is carefully
+              organized by subject and unit, so you can access what you need
+              instantly.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 p-3 shadow-sm hover-shadow border-0">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">PDF Standardization</h5>
+            <p class="card-text text-muted">
+              All uploads are in PDF format to ensure a consistent, reliable,
+              and device-friendly experience for students.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 p-3 shadow-sm hover-shadow border-0">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Community-Driven Learning</h5>
+            <p class="card-text text-muted">
+              Students can contribute and review materials to build a strong
+              collaborative learning ecosystem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h3 class="text-center mb-4">Quick Access to Resources</h3>
+    <div class="row text-center g-3">
+      <div class="col-md-2 offset-md-1">
+        <a
+          href="/notes"
+          class="subject-chip chip-title w-100 p-3 shadow-sm"
+          style="color: white; align-items: center"
+          ><i class="bi bi-journal-text"> Notes</i></a
+        >
+      </div>
+      <div class="col-md-2">
+        <a
+          href="/books"
+          class="subject-chip chip-title w-100 p-3 shadow-sm"
+          style="color: white; align-items: center"
+          ><i class="bi bi-book"> Books</i>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a
+          href="/practicals"
+          class="subject-chip chip-title w-100 p-3 shadow-sm"
+          style="color: white; align-items: center"
+          ><i class="bi bi-tools"> Practicals</i>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a
+          href="/pyqs"
+          class="subject-chip chip-title w-100 p-3 shadow-sm"
+          style="color: white; align-items: center"
+          ><i class="bi bi-file-earmark-text"> PYQs</i>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a
+          href="/reviews"
+          class="subject-chip chip-title w-100 p-3 shadow-sm"
+          style="color: white; align-items: center"
+          ><i class="bi bi-chat-left-text"> Reviews</i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5" id="DSA_Notes">
+    <h3 class="text-center mb-2">Striver's A2Z DSA Sheet – Structured Notes</h3>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card p-4 shadow-sm border-0 hover-shadow">
+          <div class="card-body text-center">
+
+            <h5 class="fw-bold mb-3">Comprehensive DSA Preparation Resource</h5>
+
+            <p class="text-muted">
+              I’ve compiled my Data Structures and Algorithms (DSA) notes based on <strong>Striver's A2Z DSA Sheet</strong>, organized topic-wise to follow a clear and systematic problem-solving approach. I’m sharing them here in case they support your learning—if you find them helpful and aligned with your preparation, feel free to use them.
+            </p>
+
+
+
+            <div class="d-flex justify-content-center mt-4">
+              <a
+                href="/notes/dsaNotes"
+                class="subject-chip chip-title px-5 py-3 shadow-sm"
+                style="color: white;"
+              >
+                <i class="bi bi-arrow-right-circle"> Explore DSA Notes</i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <% if (typeof user !== 'undefined' && user) { %>
+  <div id="contribute" class="container mt-5 mb-5">
+    <h3 class="text-center mb-4 fw-bold">Contribute to the Community</h3>
+    <p class="text-center text-muted">
+      Empower your peers by sharing your study materials. Upload PDFs of notes,
+      books, practicals, or PYQs to help students learn efficiently.
+    </p>
+
+    <div class="col-md-6 offset-md-3">
+      <form
+        action="/home"
+        method="POST"
+        class="needs-validation shadow p-4 rounded border"
+        novalidate
+        enctype="multipart/form-data"
+      >
+        <div class="mb-3">
+          <label for="type" class="form-label fw-bold"
+            >Study-Material Type</label
+          >
+          <select
+            id="type"
+            name="contributor[type]"
+            class="form-control"
+            required
+          >
+            <option value="">--Select your study-material type--</option>
+            <option value="Note">Notes</option>
+            <option value="Book">Books</option>
+            <option value="Practical">Practicals</option>
+            <option value="PYQ">PYQs</option>
+            <option value="DSA_Notes">DSA Notes</option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a study-material type.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="semester" class="form-label fw-bold">Semester</label>
+          <select
+            id="semester"
+            name="contributor[semester]"
+            class="form-control"
+            required
+          >
+            <option value="">--Select a semester--</option>
+            <option value="SEM-1">SEM-1</option>
+            <option value="SEM-2">SEM-2</option>
+            <option value="SEM-3">SEM-3</option>
+            <option value="SEM-4">SEM-4</option>
+            <option value="SEM-5">SEM-5</option>
+            <option value="SEM-6">SEM-6</option>
+          </select>
+          <div class="invalid-feedback">Please select a semester.</div>
+        </div>
+        <div class="mb-3">
+          <label for="subject" class="form-label fw-bold">Subject:</label>
+          <select
+            id="subject"
+            name="contributor[subject]"
+            class="form-control"
+            required
+          >
+            <option value="">--Select a Subject--</option>
+          </select>
+          <div class="invalid-feedback">Please select a subject.</div>
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label fw-bold">Notes Title</label>
+          <input
+            name="contributor[title]"
+            id="title"
+            class="form-control"
+            placeholder="Enter a title which you want to give to your notes"
+            required
+          />
+          <div class="invalid-feedback">
+            Please provide a title for your notes.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Choose Upload Method</label>
+          <select id="uploadMethod" class="form-control" required>
+            <option value="">--Select Upload Method--</option>
+            <option value="file">Upload PDF File</option>
+            <option value="link">Provide Google Drive PDF Link</option>
+          </select>
+          <div class="invalid-feedback">Please select an upload method.</div>
+        </div>
+
+        <div class="mb-3" id="fileUploadDiv" style="display: none">
+          <label for="file" class="form-label fw-bold"
+            >Upload File (.pdf only)</label
+          >
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="form-control"
+            accept=".pdf"
+          />
+          <small class="text-muted"
+            >* Only PDF files (up to 10MB) are accepted.</small
+          >
+          <div class="invalid-feedback">Please upload a PDF file.</div>
+        </div>
+
+        <div class="mb-3" id="linkUploadDiv" style="display: none">
+          <label for="driveLink" class="form-label fw-bold"
+            >Google Drive Link</label
+          >
+          <input
+            type="url"
+            name="contributor[driveLink]"
+            id="driveLink"
+            class="form-control"
+            placeholder="Paste your Google Drive shareable link"
+          />
+          <small class="text-muted"
+            >* Make sure the link has public access (anyone with the link can
+            view).</small
+          >
+          <div class="invalid-feedback">
+            Please provide a valid Google Drive PDF link.
+          </div>
+        </div>
+        <div class="mb-3">
+          <button
+            type="submit"
+            class="subject-chip chip-title btn-outline-dark w-100 p-3 shadow-sm"
+            style="color: white; align-items: center; border: white"
+          >
+            <i class="bi bi-upload"> Upload</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="container-fluid bg-light py-5 mb-5 shadow-sm">
+    <div class="text-center">
+      <h5 class="fw-bold mb-3">About the Creator</h5>
+      <p class="text-muted">
+        I'm <strong>Subir Mondal</strong>, a senior from CSE batch 2023-2027.
+        StudyAdda was developed to provide structured, reliable, and easily
+        accessible study resources. This platform encourages collaboration among
+        students and ensures that learning is simplified, organized, and
+        efficient.
+      </p>
+      <p class="text-secondary">&copy; <%= new Date().getFullYear() %> StudyAdda. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+
+<style>
+  .hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .container-fluid {
+    margin: 0 !important;
+    height: fit-content !important;
+    padding-bottom: 0 !important;
+  }
+</style>
+
+<script>
+  const typeSelect=document.getElementById("type");
+  const categorySelect = document.getElementById("semester");
+  const itemSelect = document.getElementById("subject");
+  const uploadMethod = document.getElementById("uploadMethod");
+  const fileUploadDiv = document.getElementById("fileUploadDiv");
+  const linkUploadDiv = document.getElementById("linkUploadDiv");
+  const file = document.getElementById("file");
+  const driveLink = document.getElementById("driveLink");
+
+  const options = {
+    "SEM-1": ["BEE", "SCP", "UHV", "Math-I", "EGD"],
+    "SEM-2": ["PPS", "CHEM", "BIO", "ENG", "Math-II"],
+    "SEM-3": ["OOP", "DSA", "COA", "IT", "OB", "PS"],
+    "SEM-4": ["DAA", "DE", "AP", "IPR", "PPL", "ES"],
+    "SEM-5": ["DBS", "WIT", "SE", "ML", "ISE"],
+    "SEM-6": ["Computer Networks", "Operating Systems", "Big Data Analytics","Mobile & Wireless Sensor Networks","Natural Language Processing"],
+  };
+  
+  categorySelect.addEventListener("change", function () {
+    const selected = this.value;
+    itemSelect.innerHTML = '<option value="">--Select Subject--</option>';
+    if (options[selected]) {
+      options[selected].forEach((sub) => {
+        const opt = document.createElement("option");
+        opt.value = sub;
+        opt.text = sub;
+        itemSelect.appendChild(opt);
+      });
+    }
+  });
+  typeSelect.addEventListener("change", function () {
+    const selected = this.value;
+
+    if (selected === "DSA_Notes") {
+      categorySelect.parentElement.style.display = "none";
+      itemSelect.parentElement.style.display = "none";
+
+      categorySelect.required = false;
+      itemSelect.required = false;
+
+      categorySelect.disabled = true;
+      itemSelect.disabled = true;
+
+      categorySelect.value = "None";
+      itemSelect.value = "None";
+    } else {
+      categorySelect.parentElement.style.display = "block";
+      itemSelect.parentElement.style.display = "block";
+
+      categorySelect.required = true;
+      itemSelect.required = true;
+
+      categorySelect.disabled = false;
+      itemSelect.disabled = false;
+
+      categorySelect.value = "";
+      itemSelect.innerHTML = '<option value="">--Select Subject--</option>';
+    }
+  });
+
+
+
+  uploadMethod.addEventListener("change", function () {
+    if (this.value === "file") {
+      fileUploadDiv.style.display = "block";
+      linkUploadDiv.style.display = "none";
+      file.required = true;
+      driveLink.required = false;
+    } else if (this.value === "link") {
+      linkUploadDiv.style.display = "block";
+      fileUploadDiv.style.display = "none";
+      driveLink.required = true;
+      file.required = false;
+    } else {
+      fileUploadDiv.style.display = "none";
+      linkUploadDiv.style.display = "none";
+    }
+  });
+
+  const contributeBtn = document.getElementById("contributeBtn");
+  const contributeSection = document.getElementById("contribute");
+
+  if (contributeBtn && contributeSection) {
+    contributeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      contributeSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+</script>

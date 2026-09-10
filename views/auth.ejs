@@ -1,0 +1,217 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:70vh; padding: 3.2rem 0;">
+  <div class="auth-container shadow-lg p-4 rounded-4">
+    <div class="d-flex mb-4">
+      <button id="loginTab" class="tab-btn active w-50">Sign in</button>
+      <button id="registerTab" class="tab-btn w-50">Sign up</button>
+    </div>
+
+    <form id="loginForm" method="post" action="/user/login">
+      <h3 class="text-center fw-bold mb-3 text-white">Sign in</h3>
+      <input type="email" name="email" id="loginEmail" class="form-control mb-3" placeholder="Enter your email" required>
+      <div class="mb-3">
+        <div class="position-relative">
+          <input
+            type="password"
+            name="password"
+            id="LoginPassword"
+            placeholder="Enter new password"
+            class="form-control pe-5"
+            minlength="8"
+            maxlength="32"
+            required
+          />
+          <i
+            class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3 toggle-password"
+            style="cursor: pointer; color: #6c757d;"
+          ></i>
+        </div>
+        <small class="form-text text-muted d-block mt-1">
+          Password must be between 8 and 32 characters
+        </small>
+      </div>
+
+      <p class="text-end mb-3">
+        <a href="/user/password/forgot" class="text-white text-decoration-underline small">Forgot your password?</a>
+      </p>
+
+      <button type="submit" class="btn btn-light w-100 rounded-pill fw-bold py-2">Login</button>
+      <a
+        href="/user/auth/google"
+        class="btn btn-outline-light w-100 rounded-pill mt-3 d-flex align-items-center justify-content-center text-decoration-none"
+        role="button"
+        aria-label="Continue with Google"
+        rel="noopener"
+      >
+        <img src="/image/google.png" width="20" class="me-2" alt="Google logo"> Continue with Google
+      </a>
+    </form>
+
+    <form id="registerForm" style="display:none;" method="POST" action="/user/register" >
+      <h3 class="text-center fw-bold mb-3 text-white">Sign up</h3>
+      <input type="text" id="name" name="name" class="form-control mb-3" placeholder="Enter your name" required>
+      <input type="email" id="email" name="email" class="form-control mb-3" placeholder="Enter your email" required>
+
+      <div class="mb-3">
+        <div class="position-relative">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter new password"
+            class="form-control pe-5"
+            minlength="8"
+            maxlength="32"
+            required
+          />
+          <i
+            class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3 toggle-password"
+            style="cursor: pointer; color: #6c757d;"
+          ></i>
+        </div>
+        <small class="form-text text-muted d-block mt-1">
+          Password must be between 8 and 32 characters
+        </small>
+      </div>
+      <button type="submit" class="btn btn-light w-100 rounded-pill fw-bold py-2">Register</button>
+      <a
+        href="/user/auth/google"
+        class="btn btn-outline-light w-100 rounded-pill mt-3 d-flex align-items-center justify-content-center text-decoration-none"
+        role="button"
+        aria-label="Continue with Google"
+        rel="noopener"
+      >
+        <img src="/image/google.png" width="20" class="me-2" alt="Google logo"> Continue with Google
+      </a>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #e0f2ff, #f8fafc);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .auth-container {
+    width: 380px;
+    background: linear-gradient(135deg, #5083ef, #2bafec);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 1.8rem;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: #e2e8f0;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .tab-btn.active {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.15);
+  }
+
+  .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Input Fields */
+  .form-control {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    transition: 0.3s ease;
+  }
+
+  .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #bfdbfe;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 5px rgba(191, 219, 254, 0.6);
+  }
+
+  .btn-light {
+    background: white;
+    color: #1d4ed8;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
+  }
+
+  .btn-light:hover {
+    background: #eff6ff;
+    color: #1e40af;
+    transform: scale(1.03);
+  }
+
+  .btn-google {
+    background: #f8fafc;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-google:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: scale(1.02);
+  }
+
+  .btn-google img {
+    width: 20px;
+    margin-right: 8px;
+  }
+
+  .forgot-link {
+    color: #bfdbfe;
+    font-size: 0.9rem;
+  }
+
+  .forgot-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+</style>
+
+
+<script>
+  const loginTab = document.getElementById("loginTab");
+  const registerTab = document.getElementById("registerTab");
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+
+  loginTab.addEventListener("click", () => {
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
+    loginForm.style.display = "block";
+    registerForm.style.display = "none";
+  });
+
+  registerTab.addEventListener("click", () => {
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
+    registerForm.style.display = "block";
+    loginForm.style.display = "none";
+  });
+</script>
