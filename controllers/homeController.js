@@ -59,8 +59,8 @@ module.exports.contributionForm=async(req, res, next) => {
 
     await newContributor.save();
 
-    const approveLink = `${"http://localhost:8080"}/home/approve/${newContributor._id}`;
-    const rejectLink = `${"http://localhost:8080"}/home/reject/${newContributor._id}`;
+    const approveLink = `${process.env.BASE_URL||"http://localhost:8080"}/home/approve/${newContributor._id}`;
+    const rejectLink = `${process.env.BASE_URL||"http://localhost:8080"}/home/reject/${newContributor._id}`;
 
     await sendApproval(newContributor, approveLink, rejectLink, process.env.ADMIN_EMAIL, res);
     await receivedMessage(fileUrl, newContributor.email, newContributor.username, res);
